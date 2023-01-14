@@ -1,7 +1,19 @@
-div{
-    border-radius: 2px;
-    border-color: black;
+body{
+    display: flex;
+    height: 100vh;
+}
+
+
+#canvas-container > div{
+    background-color: lightgreen;
+    border-width: 1px;
     border-style: solid;
-    height: 5px;
-    width: 5px;
+    min-width: 50px;
+}
+#canvas-container{
+    display: flex;
+    flex-flow: row wrap;
+    border-width: 75px;
+    border-color: red;
+    border-style: solid;
 }
