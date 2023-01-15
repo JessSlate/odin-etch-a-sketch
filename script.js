@@ -25,29 +25,24 @@ function createPixelCanvas(gridSize = 16){
 
 function fillPixel(e){
     pixel = e.target;
-
     //ignore non-pixel elements 
-    if (pixel.classList != "pixel") return; 
-
-    pixel.classList.add("filled");
+    if (pixel.classList != "pixel") return;
+    
+    pixel.style.backgroundColor = getPaintColor();
 };
 
-function reset(){
-    let pixelCanvas = document.getElementsByClassName("pixel");
-    //remove the 'filled' class
-    for (let pixel of pixelCanvas){
-        pixel.classList.remove("filled");
-    };
-    createPixelCanvas(getGridSize());
-};
+function getPaintColor(){
+    const colorPicker = document.getElementById("color-picker");
+    return colorPicker.value;
+}
 
 function getGridSize(){
-    //only accepts 
-    let userSize = 0;
+    //only accepts numbers between 1 and 100 inclusive 
+    let userSize;
     do{
         userSize = prompt("Enter grid size:\n(Max 100)", 16);
     }while(!parseInt(userSize) || userSize < 1 || userSize > 100);
-    return Math.round(userSize);
+    createPixelCanvas(Math.round(userSize));
 }
 
 //initial load
@@ -55,4 +50,4 @@ createPixelCanvas();
 
 window.addEventListener('mouseover', fillPixel);
 const resetBtn = document.getElementById("reset-button");
-resetBtn.addEventListener('click', reset);
+resetBtn.addEventListener('click', getGridSize);
