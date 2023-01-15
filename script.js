@@ -5,6 +5,8 @@ const canvasContainer = document.getElementById("canvas-container");
 //create 16 x 16 div grid
 for (let i = 0; i < GRID_SIZE; i++){
     for (let j = 0; j < GRID_SIZE; j++){
-        canvasContainer.appendChild(document.createElement("div"));
+        let newDiv = document.createElement("div");
+        newDiv.textContent = `${i}, ${j}`;
+        canvasContainer.appendChild(newDiv);
     };
 };

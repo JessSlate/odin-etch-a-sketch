@@ -1,19 +1,21 @@
 body{
     display: flex;
     height: 100vh;
+    justify-content: center;
 }
 
 
 #canvas-container > div{
+    display: flex;
     background-color: lightgreen;
-    border-width: 1px;
-    border-style: solid;
-    min-width: 50px;
+    min-width: 6.25%;
+    min-height: 6.25%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    
 }
 #canvas-container{
     display: flex;
     flex-flow: row wrap;
-    border-width: 75px;
-    border-color: red;
-    border-style: solid;
+    max-width: 65vw;
 }
