@@ -7,15 +7,19 @@ body{
 
 #canvas-container > div{
     display: flex;
-    background-color: lightgreen;
+    background-color: lightgray;
     min-width: 6.25%;
     min-height: 6.25%;
     box-sizing: border-box;
-    border: 1px solid black;
     
 }
 #canvas-container{
     display: flex;
     flex-flow: row wrap;
-    max-width: 65vw;
+    min-height: 65vw;
+    min-width: 65vw;
+}
+
+.filled{
+    background-color: darkslategrey;
 }
