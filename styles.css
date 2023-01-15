@@ -29,10 +29,14 @@ body{
     box-sizing: border-box;
     
 }
-
-div .filled{
+#color-picker{
+    width: 25px;
+    border: 0;
 }
-
 .menu {
+    display: flex;
+    justify-content: space-evenly;
+    width: 750px;
+    align-items: center;
     margin-bottom: auto;
 }

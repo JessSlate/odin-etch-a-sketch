@@ -9,12 +9,24 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-
     <div id="canvas-container"></div>
+
     <div class="menu">
-        <input type="color" name="color-picker" id="color-picker" value="#336666">
-        <button id="reset-button">Reset</button>
-    </div>
+        <div class="modes">
+            <input type="radio" id="mode-greyscale" name="mode" value="greyscale">
+            <label for="mode">Greyscale</label>
+            <input type="radio" id="mode-rainbow" name="mode" value="rainbow">
+            <label for="mode">Rainbow</label>
+            <input type="radio" id="mode-custom" name="mode" value="custom" checked="checked">
+            <label for="mode"> Custom
+                <input type="color" name="color-picker" id="color-picker" value="#336666">
+            </label>
+        </div>
+        <div>
+            <button id="reset-button">Reset</button>
+        </div>
+        </div>
+
     <div class="footer">
         <p>Site by <a href="https://github.com/JessSlate" target="_blank">Jess Slate</a> 
             as part of <a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a> curriculum</p>
