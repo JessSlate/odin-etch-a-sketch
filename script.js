@@ -20,6 +20,14 @@ function fillPixel(e){
     
 }
 
-window.addEventListener('mouseover', fillPixel);
+function reset(){
+    let pixelCanvas = document.getElementsByClassName("pixel");
+    for (let pixel of pixelCanvas){
+        pixel.classList.remove("filled");
+    }
+}
 
+window.addEventListener('mouseover', fillPixel);
+const resetBtn = document.getElementById("reset-button");
+resetBtn.addEventListener('click', reset);
 //newDiv.textContent = '\xa0';
