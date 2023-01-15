@@ -32,8 +32,28 @@ function fillPixel(e){
 };
 
 function getPaintColor(){
-    const colorPicker = document.getElementById("color-picker");
-    return colorPicker.value;
+    //determine which mode the user has selected:
+    const modes = document.getElementsByClassName("modes");
+    let selectedMode;
+    for(let radioButton of modes){
+        if(radioButton.checked) selectedMode = radioButton;
+    };
+    //get a paint color based on the selected mode
+    if(selectedMode.value == "custom"){
+        const colorPicker = document.getElementById("color-picker");
+        return colorPicker.value;
+    } else if(selectedMode.value == "rainbow") {
+        return getRandomHexColor();
+    };
+};
+
+function getRandomHexColor(){
+    const min = 0,
+        max = 255;
+    let r = Math.floor(Math.random() * (max - min + 1)),
+        g = Math.floor(Math.random() * (max - min + 1)),
+        b = Math.floor(Math.random() * (max - min + 1));
+    return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }
 
 function getGridSize(){
