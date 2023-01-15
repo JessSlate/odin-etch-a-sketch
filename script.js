@@ -6,8 +6,20 @@ const canvasContainer = document.getElementById("canvas-container");
 for (let i = 0; i < GRID_SIZE; i++){
     for (let j = 0; j < GRID_SIZE; j++){
         let newDiv = document.createElement("div");
+        newDiv.classList.add("pixel");
         canvasContainer.appendChild(newDiv);
     };
 };
+
+function fillPixel(e){
+    pixel = e.target;
+
+    console.log(pixel);
+    if (pixel.classList != "pixel") return;
+    pixel.classList.add("filled");
+    
+}
+
+window.addEventListener('mouseover', fillPixel);
 
 //newDiv.textContent = '\xa0';

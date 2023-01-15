@@ -4,8 +4,13 @@ body{
     justify-content: center;
 }
 
-
-#canvas-container > div{
+#canvas-container{
+    display: flex;
+    flex-flow: row wrap;
+    min-height: 65vw;
+    min-width: 65vw;
+}
+.pixel{
     display: flex;
     background-color: lightgray;
     min-width: 6.25%;
@@ -13,13 +18,7 @@ body{
     box-sizing: border-box;
     
 }
-#canvas-container{
-    display: flex;
-    flex-flow: row wrap;
-    min-height: 65vw;
-    min-width: 65vw;
-}
 
-.filled{
+div .filled{
     background-color: darkslategrey;
 }
