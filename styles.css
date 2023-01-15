@@ -9,19 +9,31 @@ body{
 
 #canvas-container{
     display: flex;
+    flex-shrink: 0;
     flex-flow: row wrap;
+    height: 750px;
+    width: 750px;
+    /*
     min-height: 65vw;
     min-width: 65vw;
+    */
+
+    margin-top: auto;
+
 }
 .pixel{
     display: flex;
     background-color: lightgray;
-    min-width: 6.25%;
-    min-height: 6.25%;
+    /*min-width: 6.25%;
+    min-height: 6.25%;*/
     box-sizing: border-box;
     
 }
 
 div .filled{
     background-color: darkslategrey;
+}
+
+.menu {
+    margin-bottom: auto;
 }

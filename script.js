@@ -6,12 +6,18 @@ function createPixelCanvas(gridSize = 16){
 
     //clear out any previously generated divs
     canvasContainer.textContent = "";
-    
+
+    let pixelSize = (1/gridSize) * 100;
+    //deal with irrational numbers / percentages
+    pixelSize = (Math.floor(pixelSize * 10))/10;
+
     //create div grid
     for (let i = 0; i < gridSize; i++){
         for (let j = 0; j < gridSize; j++){
             let newDiv = document.createElement("div");
             newDiv.classList.add("pixel");
+            newDiv.style.minWidth = `${pixelSize}%`;
+            newDiv.style.minHeight = `${pixelSize}%`;
             canvasContainer.appendChild(newDiv);
         };
     };
@@ -36,10 +42,15 @@ function reset(){
 };
 
 function getGridSize(){
-    let userSize = prompt("Hello");
-    return userSize;
+    //only accepts 
+    let userSize = 0;
+    do{
+        userSize = prompt("Enter grid size:\n(Max 100)", 16);
+    }while(!parseInt(userSize) || userSize < 1 || userSize > 100);
+    return Math.round(userSize);
 }
 
+//initial load
 createPixelCanvas();
 
 window.addEventListener('mouseover', fillPixel);
