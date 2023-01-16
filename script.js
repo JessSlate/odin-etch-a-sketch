@@ -18,6 +18,7 @@ function createPixelCanvas(gridSize = 16){
             newDiv.classList.add("pixel");
             newDiv.style.minWidth = `${pixelSize}%`;
             newDiv.style.minHeight = `${pixelSize}%`;
+            newDiv.style.backgroundColor = "#FFFFFF";
             canvasContainer.appendChild(newDiv);
         };
     };
@@ -28,10 +29,12 @@ function fillPixel(e){
     //ignore non-pixel elements 
     if (pixel.classList != "pixel") return;
     
-    pixel.style.backgroundColor = getPaintColor();
+    let temp = getPaintColor(pixel);
+    console.log("in fillPixel: " + temp);
+    pixel.style.backgroundColor = temp;
 };
 
-function getPaintColor(){
+function getPaintColor(pixel){
     //determine which mode the user has selected:
     const modes = document.getElementsByClassName("modes");
     let selectedMode;
@@ -44,7 +47,12 @@ function getPaintColor(){
         return colorPicker.value;
     } else if(selectedMode.value == "rainbow") {
         return getRandomHexColor();
-    };
+    } else if(selectedMode.value == "greyscale"){
+        let temp = darkenColor(pixel.style.backgroundColor);
+        console.log("in getPaintColor: " + temp);
+        return temp;
+        
+    }
 };
 
 function getRandomHexColor(){
@@ -53,7 +61,29 @@ function getRandomHexColor(){
     let r = Math.floor(Math.random() * (max - min + 1)),
         g = Math.floor(Math.random() * (max - min + 1)),
         b = Math.floor(Math.random() * (max - min + 1));
+    
     return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+}
+
+function darkenColor(color){
+    //string comes in as "rgb(255, 255, 255)"
+    let values = color.replace(/[^0-9,]/g,''); //get rid of everything that isn't a number
+
+    values = values.split(',');
+
+    for(let i = 0; i < values.length; i++){
+        values[i] = parseInt(values[i]);
+        values[i] = Math.floor(values[i] / 1.1);
+        if(values[i] < 16){
+            values[i] = values[i].toString(16);
+            values[i] = "0" + values[i];
+        } else { 
+            values[i] = values[i].toString(16);
+        };
+    };
+    values = values.join();
+    values = values.replaceAll(",", '');
+    return `#${values}`;
 }
 
 function getGridSize(){

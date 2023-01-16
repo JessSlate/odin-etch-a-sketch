@@ -7,12 +7,17 @@ body{
     gap: 8px;
 }
 
+
 #canvas-container{
     display: flex;
+    background-color: darkred;
     flex-shrink: 0;
     flex-flow: row wrap;
     height: 750px;
     width: 750px;
+    border: 2px solid darkred;
+    padding: 0;
+    justify-content: center;
     /*
     min-height: 65vw;
     min-width: 65vw;
@@ -24,9 +29,10 @@ body{
 .pixel{
     display: flex;
     background-color: lightgray;
+    margin: 0;
+    padding: 0;
     /*min-width: 6.25%;
     min-height: 6.25%;*/
-    box-sizing: border-box;
     
 }
 #color-picker{
