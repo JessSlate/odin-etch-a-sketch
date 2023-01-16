@@ -29,9 +29,7 @@ function fillPixel(e){
     //ignore non-pixel elements 
     if (pixel.classList != "pixel") return;
     
-    let temp = getPaintColor(pixel);
-    console.log("in fillPixel: " + temp);
-    pixel.style.backgroundColor = temp;
+    pixel.style.backgroundColor = getPaintColor(pixel);
 };
 
 function getPaintColor(pixel){
@@ -47,12 +45,9 @@ function getPaintColor(pixel){
         return colorPicker.value;
     } else if(selectedMode.value == "rainbow") {
         return getRandomHexColor();
-    } else if(selectedMode.value == "greyscale"){
-        let temp = darkenColor(pixel.style.backgroundColor);
-        console.log("in getPaintColor: " + temp);
-        return temp;
-        
-    }
+    } else if(selectedMode.value == "darken"){
+        return darkenColor(pixel.style.backgroundColor);
+    };
 };
 
 function getRandomHexColor(){
@@ -62,8 +57,8 @@ function getRandomHexColor(){
         g = Math.floor(Math.random() * (max - min + 1)),
         b = Math.floor(Math.random() * (max - min + 1));
     
-    return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
-}
+    return rgbToHexColorCode(r, g, b);
+};
 
 function darkenColor(color){
     //string comes in as "rgb(255, 255, 255)"
@@ -74,16 +69,8 @@ function darkenColor(color){
     for(let i = 0; i < values.length; i++){
         values[i] = parseInt(values[i]);
         values[i] = Math.floor(values[i] / 1.1);
-        if(values[i] < 16){
-            values[i] = values[i].toString(16);
-            values[i] = "0" + values[i];
-        } else { 
-            values[i] = values[i].toString(16);
-        };
     };
-    values = values.join();
-    values = values.replaceAll(",", '');
-    return `#${values}`;
+    return(rgbToHexColorCode(values[0], values[1], values[2]));
 }
 
 function getGridSize(){
@@ -93,6 +80,24 @@ function getGridSize(){
         userSize = prompt("Enter grid size:\n(Max 100)", 16);
     }while(!parseInt(userSize) || userSize < 1 || userSize > 100);
     createPixelCanvas(Math.round(userSize));
+}
+
+
+function rgbToHexColorCode(r, g, b){
+    let values = [r, g, b];
+    for(let i = 0; i < values.length; i++){
+        //adds a leading 0 to numbers less than 16
+        //without, rgb(15, 15, 15) would return #FFF
+        //instead of #0F0F0F
+        if(values[i] < 16){
+            values[i] = values[i].toString(16);
+            values[i] = "0" + values[i];
+        } else { 
+            values[i] = values[i].toString(16);
+        };
+    };
+    values = values.join('');
+    return `#${values}`;
 }
 
 //initial load
